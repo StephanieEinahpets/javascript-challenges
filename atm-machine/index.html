@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles/style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Welcome to the ATM</h1>
+    <div class="login-section">
+      <label for="email">Email</label>
+      <input type="email" id="email" />
+      <label for="password">Password </label>
+      <input type="password" id="password" required />
+      <button onclick="login()">Log In</button>
+      <p class="login-error error hidden">Invalid email or password</p>
+    </div>
+
+    <div class="atm-menu hidden">
+      <p class="user-greeting"></p>
+      <p class="balance-display"></p>
+      <button onclick="toggleTransaction('deposit')">Deposit</button>
+      <button onclick="toggleTransaction('withdraw')">Withdraw</button>
+      <button onclick="logout()">Log Out</button>
+    </div>
+
+    <div class="deposit-section hidden">
+      <label for="deposit-amount">Deposit Amount</label>
+      <input type="number" id="deposit-amount" min="1" stop="1" />
+      <button onclick="completeTransaction('deposit')">Complete Deposit</button>
+      <button onclick="toggleTransaction('')">Cancel</button>
+      <p class="deposit-error error hidden">
+        Please enter a valid deposit amount
+      </p>
+    </div>
+
+    <div class="withdraw-section hidden">
+      <label for="withdraw-amount">Withdraw Amount</label>
+      <input type="number" id="withdraw-amount" min="1" stop="1" />
+      <button onclick="completeTransaction('withdraw')">
+        Complete Withdraw
+      </button>
+      <button onclick="toggleTransaction('')">Cancel</button>
+      <p class="withdraw-error error hidden">
+        Please enter a valid withdraw amount
+      </p>
+    </div>
+
+    <div class="transaction-history hidden">
+      <h3>Transaction History</h3>
+      <ul class="transaction-list"></ul>
+    </div>
+
+    <script src="./scripts/script.js"></script>
+  </body>
+</html>
