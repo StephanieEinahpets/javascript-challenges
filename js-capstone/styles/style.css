@@ -1,0 +1,38 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.whole-container {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+}
+
+.weight-section {
+  border-right: 2px solid black;
+  height: 100vh;
+}
+
+.weight-label {
+  border-bottom: 2px solid black;
+  height: 10vh;
+  text-align: center;
+}
+
+.name-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 90%;
+}
+
+.individual {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.main-section {
+  text-align: center;
+  margin-top: 40vh;
+}

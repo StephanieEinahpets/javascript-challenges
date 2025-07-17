@@ -1,43 +1,36 @@
-const prompt = require("prompt-sync")();
+const prompt = require("prompt-sync")()
 
-function playGame(userChoice) {
-  const choices = ["rock", "paper", "scissors"];
+function playGame() {
+  const choices = ["rock", "paper", "scissors"]
 
   while (true) {
-    let userChoice = prompt(
-      "Rock, paper, or scissors? (type 'stop' to quit)  "
-    );
-    userChoice = userChoice.trim().toLowerCase();
+    let userChoice = prompt("Rock, paper, or scissors? (type 'stop' to quit)  ")
+    userChoice = userChoice.trim().toLowerCase()
 
     if (userChoice === "stop" || userChoice === "quit") {
-      console.log("\nCome play again soon!");
-      break;
+      console.log("\nCome play again soon!")
+      break
     }
     if (!choices.includes(userChoice)) {
-      console.log("\nInvalid. Please type rock, paper, or scissors.\n");
-      continue;
+      console.log("\nInvalid. Please type rock, paper, or scissors.\n")
+      continue
     }
 
-    const computerChoice = choices[Math.floor(Math.random() * 3)];
-    console.log(
-      `\nYou chose: ${userChoice}\nComputer chose: ${computerChoice}`
-    );
+    const computerChoice = choices[Math.floor(Math.random() * 3)]
+    console.log(`\nYou chose: ${userChoice}\nComputer chose: ${computerChoice}`)
 
     if (userChoice === computerChoice) {
-      console.log("It's a tie!\n");
-      break;
+      console.log("It's a tie!\n")
     } else if (
       (userChoice === "rock" && computerChoice === "scissors") ||
       (userChoice === "paper" && computerChoice === "rock") ||
       (userChoice === "scissors" && computerChoice === "paper")
     ) {
-      console.log("You win!");
-      break;
+      console.log("You win!")
     } else {
-      console.log("You lose!\n");
-      break;
+      console.log("You lose!\n")
     }
   }
 }
 
-playGame();
+playGame()
