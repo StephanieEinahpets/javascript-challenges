@@ -11,17 +11,22 @@ async function getUsers() {
 
 function renderUsers(users) {
   const sidebar = document.querySelector(".name-section")
-  sidebar.innerHTML = ""
 
   users.forEach((user) => {
-    const userDiv = document.createElement("div")
-    userDiv.classList.add("individual")
+    const userContainer = document.createElement("div")
+    userContainer.classList.add("individual")
 
     const name = document.createElement("h6")
     name.textContent = user.firstName
 
+    const controlsContainer = document.createElement("div")
+    controlsContainer.classList.add("controls")
+
     const weight = document.createElement("p")
     weight.textContent = userWeights[user.id]
+
+    const buttonRow = document.createElement("div")
+    buttonRow.classList.add("button-row")
 
     const plusBtn = document.createElement("button")
     plusBtn.classList.add("plus-button")
@@ -43,11 +48,13 @@ function renderUsers(users) {
       }
     })
 
-    userDiv.appendChild(name)
-    userDiv.appendChild(weight)
-    userDiv.appendChild(plusBtn)
-    userDiv.appendChild(minusBtn)
-    sidebar.appendChild(userDiv)
+    buttonRow.appendChild(minusBtn)
+    buttonRow.appendChild(plusBtn)
+    controlsContainer.appendChild(weight)
+    controlsContainer.appendChild(buttonRow)
+    userContainer.appendChild(name)
+    userContainer.appendChild(controlsContainer)
+    sidebar.appendChild(userContainer)
   })
 }
 
@@ -74,7 +81,7 @@ function pickName(users) {
       const finalIndex = Math.floor(Math.random() * weightedPool.length)
       const chosen = weightedPool[finalIndex]
 
-      display.textContent = `✦•┈「 ${chosen.firstName} 」┈•✦`
+      display.textContent = `✦•┈ 𓉘\u00A0\u00A0${chosen.firstName}\u00A0\u00A0𓉝 ┈•✦`
       highlightSelected(chosen.firstName)
     }
   }, 100)
