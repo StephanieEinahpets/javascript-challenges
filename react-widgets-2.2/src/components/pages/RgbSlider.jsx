@@ -12,13 +12,14 @@ export default function RGBSlider() {
   return (
     <div>
       <h1>RGB Slider Widget</h1>
-      <br />
       <div
         style={{
           width: "100px",
           height: "100px",
           backgroundColor: colorString,
           border: "1px solid black",
+          margin: "0 auto",
+          display: "block",
         }}
       />
       <p>
