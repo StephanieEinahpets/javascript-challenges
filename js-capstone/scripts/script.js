@@ -58,41 +58,61 @@ function renderUsers(users) {
   })
 }
 
-function pickName(users) {
+async function pickName(users) {
   const display = document.querySelector(".main-section h1")
   let count = 0
 
-  const interval = setInterval(() => {
-    const randomIndex = Math.floor(Math.random() * users.length)
-    display.textContent = users[randomIndex].firstName
-    count++
+  await new Promise((resolve) => {
+    const interval = setInterval(() => {
+      const randomIndex = Math.floor(Math.random() * users.length)
+      display.textContent = users[randomIndex].firstName
+      count++
 
-    if (count >= 20) {
-      clearInterval(interval)
+      if (count >= 20) {
+        clearInterval(interval)
 
-      const weightedPool = []
-      users.forEach((user) => {
-        const weight = userWeights[user.id]
-        for (let i = 0; i < weight; i++) {
-          weightedPool.push(user)
-        }
-      })
+        const weightedPool = []
+        users.forEach((user) => {
+          const weight = userWeights[user.id]
+          for (let i = 0; i < weight; i++) {
+            weightedPool.push(user)
+          }
+        })
 
-      const finalIndex = Math.floor(Math.random() * weightedPool.length)
-      const chosen = weightedPool[finalIndex]
+        const finalIndex = Math.floor(Math.random() * weightedPool.length)
+        const chosen = weightedPool[finalIndex]
 
-      display.textContent = `✦•┈ 𓉘\u00A0\u00A0${chosen.firstName}\u00A0\u00A0𓉝 ┈•✦`
-      highlightSelected(chosen.firstName)
-    }
-  }, 100)
+        display.textContent = `✦•┈ 𓉘\u00A0\u00A0${chosen.firstName}\u00A0\u00A0𓉝 ┈•✦`
+        highlightSelected(chosen.firstName)
+        resolve()
+      }
+    }, 100)
+  })
 }
 
 getUsers().then((users) => {
   allUsers = users
   users.forEach((user) => (userWeights[user.id] = 1))
   renderUsers(users)
+  document.querySelector(".generate").disabled = false
 })
 
-document.querySelector(".generate").addEventListener("click", () => {
-  pickName(allUsers)
+function highlightSelected(name) {
+  const allIndividuals = document.querySelectorAll(".individual")
+
+  allIndividuals.forEach((el) => {
+    const heading = el.querySelector("h6")
+    if (heading && heading.textContent === name) {
+      el.classList.add("highlighted")
+    } else {
+      el.classList.remove("highlighted")
+    }
+  })
+}
+
+document.querySelector(".generate").addEventListener("click", async () => {
+  const button = document.querySelector(".generate")
+  button.disabled = true
+  await pickName(allUsers)
+  button.disabled = false
 })
