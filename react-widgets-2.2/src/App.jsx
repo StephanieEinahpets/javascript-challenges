@@ -1,22 +1,14 @@
-import React from "react"
-import {
-  BrowserRouter,
-  Switch,
-  Route,
-  Redirect,
-  Link,
-  NavLink,
-} from "react-router-dom"
-import Nav from "./components/pages/Nav"
+import { BrowserRouter } from "react-router-dom"
+import "./styles/App.scss"
+import Navbar from "./components/navigation/Navbar"
+import Routing from "./components/navigation/Routing"
 
 function App() {
   return (
     <div>
       <BrowserRouter>
-        <Switch>
-          <Route />
-          <Route />
-        </Switch>
+        <Navbar />
+        <Routing />
       </BrowserRouter>
     </div>
   )

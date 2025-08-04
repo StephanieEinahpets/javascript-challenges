@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 
-export default function WeatherWidget() {
+export default function Weather() {
   const [weather, setWeather] = useState(null)
   const [loading, setLoading] = useState(true)
 
@@ -20,7 +20,8 @@ export default function WeatherWidget() {
 
   return (
     <div>
-      <h2>Weather</h2>
+      <h1>Weather Widget</h1>
+      <br />
       {loading ? (
         <p>Loading...</p>
       ) : (
